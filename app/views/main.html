@@ -1,9 +1,9 @@
-<div id="jenkinsLight" ng-style="backgroundBlankScreen">
-    <div class="info"><a href="http://github.com/m6web/JenkinsLight">JenkinsLight</a> by <a href="http://tech.m6web.fr">M6Web</a></div>
+<div id="seyrenLight" ng-style="backgroundBlankScreen">
+    <div class="info"><a href="http://github.com/m6web/SeyrenLight">SeyrenLight</a> by <a href="http://tech.m6web.fr">M6Web</a></div>
     <div class="grid wall">
-        <div ng-repeat="job in jobs" class="col-1-{{ jobsPerLine }}">
-            <div class="job job-color-{{ job.color }}" style="height: {{ oneJobHeight - 20 }}px; font-size: {{ fontSize }}px;">
-                <h2><a href="{{ job.url }}" target="_blank">{{ job.name }}</a></h2>
+        <div ng-repeat="check in checks" class="col-1-{{ checksPerLine }}">
+            <div class="check check-color-{{ check.state }}" style="height: {{ oneCheckHeight - 20 }}px; font-size: {{ fontSize }}px;">
+                <h2><a href="{{ check.url }}" target="_blank">{{ check.name }}</a></h2>
             </div>
         </div>
     </div>

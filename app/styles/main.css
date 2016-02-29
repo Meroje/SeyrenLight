@@ -48,7 +48,7 @@ a {
     color: inherit;
     text-decoration: none;
 }
-#jenkinsLight {
+#seyrenLight {
     min-height: 100%;
     margin:0;
     padding:0;
@@ -70,34 +70,34 @@ a {
 .info a {
     font-weight: bold;
 }
-.wall .job {
+.wall .check {
     height: 85px;
     margin: 10px;
     padding: 10px;
     box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 }
-.wall .job h2 {
+.wall .check h2 {
     color: white;
     font-weight: bold;
     text-transform: uppercase;
 }
-.wall .job h2 a {
+.wall .check h2 a {
     text-decoration: none;
 }
-.wall .job-color-blue,
-.wall .job-color-blue_anime {
+.wall .check-color-OK {
     background-color: #2ecc71;
     border-right: 1px solid #27ae60;
     border-bottom: 1px solid #27ae60;
 }
-.wall .job-color-red,
-.wall .job-color-red_anime {
+.wall .check-color-WARN {
+    background-color: #e7af1d;
+    border-right: 1px solid #a97e1a;
+    border-bottom: 1px solid #a97e1a;
+}
+.wall .check-color-ERROR {
     background-color: #e74c3c;
     border-right: 1px solid #c0392b;
     border-bottom: 1px solid #c0392b;
-}
-.wall .job-color-blue_anime,
-.wall .job-color-red_anime {
     animation-name: blinker;
     animation-duration: 1s;
     animation-timing-function: linear;

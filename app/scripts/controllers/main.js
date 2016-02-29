@@ -1,18 +1,18 @@
 'use strict';
 
-angular.module('jenkinsLightApp')
-    .controller('JenkinsLightCtrl', function JenkinsLightCtrl ($scope, $window, CONFIG, JenkinsService, $interval) {
-        $scope.jobs                  = [];
-        $scope.jobsPerLine           = CONFIG.DEFAULT_JOBS_PER_LINE;
+angular.module('seyrenLightApp')
+    .controller('SeyrenLightCtrl', function SeyrenLightCtrl ($scope, $window, CONFIG, SeyrenService, $interval) {
+        $scope.checks                  = [];
+        $scope.checksPerLine           = 1;
         $scope.backgroundBlankScreen = null;
 
         var callAPI = function () {
-            JenkinsService.getJobs().
-                then(function (jobs) {
+            SeyrenService.getChecks().
+                then(function (checks) {
 
                     // Display background image on blank screen
                     if (CONFIG.BACKGROUND_BLANK_SCREEN_URL) {
-                        if (jobs.length == 0) {
+                        if (checks.length == 0) {
                             $scope.backgroundBlankScreen = {
                                 'background-image': 'url(' + CONFIG.BACKGROUND_BLANK_SCREEN_URL + ')'
                             };
@@ -21,30 +21,30 @@ angular.module('jenkinsLightApp')
                         }
                     }
 
-                    // Calculation of optimized job area
-                    var minJobHeight = 100;
-                    var minJobWidth  = 200;
+                    // Calculation of optimized check area
+                    var minCheckHeight = 100;
+                    var minCheckWidth  = 200;
                     var screenHeigth = $window.innerHeight - 40;
                     var screenWidth  = $window.innerWidth;
                     var sizeSet      = [];
                     var tooLargeSet  = [];
-                    var oneJobWidth, oneJobHeight, jobsPerColumn, jobsPerLine;
+                    var oneCheckWidth, oneCheckHeight, checksPerColumn, checksPerLine;
 
-                    for (var i = 0; i <= CONFIG.MAX_JOBS_PER_LINE ; i++) {
-                        jobsPerLine   = i;
-                        jobsPerColumn = Math.ceil(jobs.length / jobsPerLine);
-                        oneJobWidth   = Math.ceil(screenWidth / jobsPerLine);
-                        oneJobHeight  = Math.ceil(screenHeigth / jobsPerColumn);
+                    for (var i = 0; i <= CONFIG.MAX_CHECKS_PER_LINE ; i++) {
+                        checksPerLine   = i;
+                        checksPerColumn = Math.ceil(checks.length / checksPerLine);
+                        oneCheckWidth   = Math.ceil(screenWidth / checksPerLine);
+                        oneCheckHeight  = Math.ceil(screenHeigth / checksPerColumn);
 
-                        if ((oneJobHeight < minJobHeight) && (oneJobWidth >= minJobWidth)) {
-                            oneJobHeight = minJobHeight;
-                            tooLargeSet.push({'oneJobHeight': oneJobHeight, 'jobsPerLine': jobsPerLine});
+                        if ((oneCheckHeight < minCheckHeight) && (oneCheckWidth >= minCheckWidth)) {
+                            oneCheckHeight = minCheckHeight;
+                            tooLargeSet.push({'oneCheckHeight': oneCheckHeight, 'checksPerLine': checksPerLine});
                             continue;
-                        } else if (oneJobWidth < minJobWidth) {
+                        } else if (oneCheckWidth < minCheckWidth) {
                             continue;
                         }
 
-                        sizeSet.push({'oneJobHeight': oneJobHeight, 'jobsPerLine': jobsPerLine, 'ratio': oneJobWidth / oneJobHeight});
+                        sizeSet.push({'oneCheckHeight': oneCheckHeight, 'checksPerLine': checksPerLine, 'ratio': oneCheckWidth / oneCheckHeight});
                     }
 
                     // If at least one solution fit in screen
@@ -55,20 +55,20 @@ angular.module('jenkinsLightApp')
                             return (Math.abs(a['ratio'] - baseRatio) > Math.abs(b['ratio'] - baseRatio)) ? 1 : -1;
                         });
 
-                        oneJobHeight = sizeSet[0]['oneJobHeight'];
-                        jobsPerLine  = sizeSet[0]['jobsPerLine'];
+                        oneCheckHeight = sizeSet[0]['oneCheckHeight'];
+                        checksPerLine  = sizeSet[0]['checksPerLine'];
                     } else {
                         var solution = tooLargeSet.pop();
-                        oneJobHeight = solution['oneJobHeight'];
-                        jobsPerLine  = solution['jobsPerLine'];
+                        oneCheckHeight = solution['oneCheckHeight'];
+                        checksPerLine  = solution['checksPerLine'];
                     }
 
-                    var fontSize = Math.floor(15 * (oneJobHeight / minJobHeight));
+                    var fontSize = Math.floor(15 * (oneCheckHeight / minCheckHeight));
 
-                    $scope.oneJobHeight = oneJobHeight;
-                    $scope.jobsPerLine  = jobsPerLine;
+                    $scope.oneCheckHeight = oneCheckHeight;
+                    $scope.checksPerLine  = checksPerLine;
                     $scope.fontSize     = fontSize;
-                    $scope.jobs         = jobs;
+                    $scope.checks         = checks;
                 });
         };
 

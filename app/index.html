@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>JenkinsLight by M6Web</title>
+        <title>SeyrenLight by M6Web</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
@@ -18,7 +18,7 @@
         <link rel="stylesheet" href="styles/main.css">
         <!-- endbuild -->
     </head>
-    <body ng-app="jenkinsLightApp">
+    <body ng-app="seyrenLightApp">
         <div class="container" ng-view=""></div>
 
         <script src="bower_components/angular/angular.js"></script>
@@ -30,14 +30,8 @@
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/config.js"></script>
-        <script src="scripts/services/jenkins.js"></script>
+        <script src="scripts/services/seyren.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <!-- endbuild -->
-
-        <!-- @if NODE_ENV == 'TEST' -->
-        <script src="bower_components/angular-mocks/angular-mocks.js"></script>
-        <script src="scripts/config.js.dist"></script>
-        <script src="scripts/e2e-mocks.js"></script>
-        <!-- @endif -->
     </body>
 </html>

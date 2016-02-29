@@ -1,31 +1,31 @@
 'use strict';
 
-describe('jenkinsLightApp', function() {
-    it('should be blue when job success', function() {
-        browser().navigateTo('/#/?view=blue');
-        expect(element('.job.job-color-red').count()).toBe(0);
-        expect(element('.job.job-color-blue').count()).toBe(1);
-        expect(element('#jenkinsLight').attr('style')).toBe(undefined);
+describe('seyrenLightApp', function() {
+    it('should be blue when check success', function() {
+        browser().navigateTo('/#/');
+        expect(element('.check.check-color-ERROR').count()).toBe(0);
+        expect(element('.check.check-color-OK').count()).toBe(1);
+        expect(element('#seyrenLight').attr('style')).toBe(undefined);
     });
 
-    it('should be red when job fails', function() {
+    it('should be red when check fails', function() {
         browser().navigateTo('/#/?view=red');
-        expect(element('.job.job-color-red').count()).toBe(1);
-        expect(element('.job.job-color-blue').count()).toBe(0);
-        expect(element('#jenkinsLight').attr('style')).toBe(undefined);
+        expect(element('.check.check-color-ERROR').count()).toBe(1);
+        expect(element('.check.check-color-OK').count()).toBe(0);
+        expect(element('#seyrenLight').attr('style')).toBe(undefined);
     });
 
-    it('should be background when no jobs is displayed', function() {
+    it('should be background when no checks is displayed', function() {
         browser().navigateTo('/#/?view=none');
-        expect(element('.job.job-color-red').count()).toBe(0);
-        expect(element('.job.job-color-blue').count()).toBe(0);
-        expect(element('#jenkinsLight').attr('style')).toMatch('image-url-or-null');
+        expect(element('.check.check-color-ERROR').count()).toBe(0);
+        expect(element('.check.check-color-OK').count()).toBe(0);
+        expect(element('#seyrenLight').attr('style')).toMatch('image-url-or-null');
     });
 
-    it('should be not displays job when the title containing "dev"', function() {
+    it('should be not displays check when the title containing "dev"', function() {
         browser().navigateTo('/#/?view=regexp');
-        expect(element('.job.job-color-red').count()).toBe(1);
-        expect(element('.job.job-color-blue').count()).toBe(1);
-        expect(element('#jenkinsLight').attr('style')).toBe(undefined);
+        expect(element('.check.check-color-ERROR').count()).toBe(1);
+        expect(element('.check.check-color-OK').count()).toBe(1);
+        expect(element('#seyrenLight').attr('style')).toBe(undefined);
     });
 });

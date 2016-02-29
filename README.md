@@ -1,21 +1,16 @@
-# JenkinsLight [![Build Status](https://api.travis-ci.org/M6Web/JenkinsLight.png?branch=master)](http://travis-ci.org/M6Web/JenkinsLight)
+# SeyrenLight
 
-A build monitoring tool (buildwall) that allows you to quickly detect failing projects for Jenkins.
+A monitoring tool (buildwall) that allows you to quickly display failing checks for Seyren.
 
-![JenkinsLight](http://img818.imageshack.us/img818/6423/mz5c.png "JenkinsLight")
-
-## Requirements
-
-This project required a [cors-plugin Jenkins plugin](https://github.com/jhinrichsen/cors-plugin) to enabled CORS.
-Enabling CORS would let you call the Jenkins REST API from javascript (you can use [the provided packaged plugin](bin/cors.hpi)).
+**Disclaimer:** This project is a modified clone of [SeryenLight](https://github.com/M6Web/SeryenLight).
 
 ## Installation
 
 #### Clone the project
 
 ```
-$ git clone https://github.com/M6Web/JenkinsLight.git
-$ cd JenkinsLight
+$ git clone https://github.com/M6Web/SeryenSeyren.git
+$ cd SeyrenLight
 ```
 
 #### Install dependencies
@@ -30,23 +25,19 @@ $ bower install
 
 Please configure a new `app/scripts/config.js` file from [`app/scripts/config.js.dist`](app/scripts/config.js.dist).
 
-Jenkins options :
+Seyren options :
 
-* **CI.JENKINS.URL** : Jenkins server url
-* **CI.JENKINS.AUTHORIZATION_TOKEN** : authorization token if your Jenkins server is secured, eg: "Basic 0123456=" (opt.)
-* **CI.JENKINS.DEFAULT_VIEW** : default Jenkins view to display, eg : "All"
-* **CI.JENKINS.JOBS_TO_BE_DISPLAYED** : array of all job types that can be displayed :
-  * *red* : failing job,
-  * *red_anime* : building failed job,
-  * *blue* : succeeding job,
-  * *blue_anime* : building succeeded job.
+* **CI.Seyren.URL** : Seyren server url
+* **CI.SERYEN.CHECKS_TO_BE_DISPLAYED** : array of all check states that can be displayed :
+  * *ERROR* : failing check,
+  * *WARN* : warning check,
+  * *OK* : succeeding check.
 
 Display options :
 
-* **MAX_JOBS_PER_LINE** : maximum number of jobs displayed per line
+* **MAX_CHECKS_PER_LINE** : maximum number of checks displayed per line
 * **REFRESH_TIME** : refresh time (ms)
 * **BACKGROUND_BLANK_SCREEN_URL** : background image url use if no job are dislayed
-* **JOBS_NOT_DISPLAYED_REGEXP** : exclude jobs which name match this regexp
 
 Then you have to build the server code.
 
@@ -58,35 +49,13 @@ Your server root url must target the `dist` folder.
 
 ## Use
 
-Use `view` query parameter for select a Jenkins view.
+Use `filter` query parameter to apply a regexp to results.
 
 ```
-http://jenkins-light-url/index.html#?view=MyView
+http://seyren-light-url/index.html#?filter=production
 ```
 
 ## Installation for dev
-
-#### Clone and init the project
-
-```
-$ git clone https://github.com/M6Web/JenkinsLight.git
-$ cd JenkinsLight/vagrant
-$ git submodule install --init
-```
-
-Install [Vagrant](http://www.vagrantup.com/downloads) and configure `Vagrantfile` :
-
-```
-$ cp Vagrantfile.dist Vagrantfile
-```
-
-*Note : configure your own Vagrantfile and provisionning if necessary.*
-
-```
-$ vagrant up
-$ vagrant ssh
-$ cd /vagrant
-```
 
 #### Install dependencies
 
@@ -105,16 +74,10 @@ $ grunt server
 
 You can now access the application at `http://localhost:8888`.
 
-## Tests
-
-```shell
-$ npm test
-```
-
 ## Credits
 
 Developed by the [Cytron Team](http://cytron.fr/) of [M6 Web](http://tech.m6web.fr/).
 
 ## License
 
-[JenkinsLight](https://github.com/M6Web/JenkinsLight) is licensed under the [MIT license](LICENSE).
+[SeryenLight](https://github.com/M6Web/SeryenLight) is licensed under the [MIT license](LICENSE).
