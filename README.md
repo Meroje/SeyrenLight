@@ -80,4 +80,4 @@ Developed by the [Cytron Team](http://cytron.fr/) of [M6 Web](http://tech.m6web.
 
 ## License
 
-[SeryenLight](https://github.com/M6Web/SeryenLight) is licensed under the [MIT license](LICENSE).
+[SeyrenLight](https://github.com/M6Web/SeyrenLight) is licensed under the [MIT license](LICENSE).
