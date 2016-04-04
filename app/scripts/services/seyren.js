@@ -4,6 +4,10 @@ angular.module('seyrenLightApp')
     .factory('SeyrenService', function (CONFIG, $location, $http) {
         return {
             getChecks: function () {
+                var params = {
+                    state: CONFIG.CI.SEYREN.CHECKS_TO_BE_DISPLAYED,
+                    enabled: true,
+                };
                 var filterParameter;
                 if ($location.search().filter) {
                     // Set the value of the view query parameter
@@ -11,7 +15,8 @@ angular.module('seyrenLightApp')
                 }
 
                 // Call Seyren API
-                var promise = $http({method: 'GET', url: CONFIG.CI.SEYREN.URL + '/api/checks'}).
+                // see https://github.com/scobal/seyren/blob/master/API.md#search-checks
+                var promise = $http({method: 'GET', url: CONFIG.CI.SEYREN.URL + '/api/checks', params: params}).
                     then(function(response) {
 
                         // Initialize checks data
@@ -20,19 +25,15 @@ angular.module('seyrenLightApp')
 
                         data.values.forEach(function(check) {
 
-                            // Check if this `check` can be displayable
-                            if (CONFIG.CI.SEYREN.CHECKS_TO_BE_DISPLAYED.indexOf(check.state) > -1) {
-
-                                // Filter checks not displayed
-                                if (filterParameter && ! new RegExp(filterParameter, 'gi').test(check.name)) {
-                                    return;
-                                }
-
-                                check.url = CONFIG.CI.SEYREN.URL + '/#/checks/' + check.id;
-
-                                // Push check on screen
-                                checks .push(check);
+                            // Filter checks not displayed, since API regexes seems to fail...
+                            if (filterParameter && ! new RegExp(filterParameter, 'gi').test(check.name)) {
+                                return;
                             }
+
+                            check.url = CONFIG.CI.SEYREN.URL + '/#/checks/' + check.id;
+
+                            // Push check on screen
+                            checks .push(check);
                         });
 
                         // Return checks filtered
