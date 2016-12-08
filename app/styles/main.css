@@ -107,6 +107,19 @@ a {
     -webkit-animation-timing-function: linear;
     -webkit-animation-iteration-count: infinite;
 }
+.wall .check-color-DISCONNECTED {
+    background-color: #4857e7;
+    border-right: 1px solid #202765;
+    border-bottom: 1px solid #3946b8;
+    animation-name: blinker;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    -webkit-animation-name: blinker;
+    -webkit-animation-duration: 0.5s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+}
 
 @-moz-keyframes blinker {
     0% { opacity: 1.0; }

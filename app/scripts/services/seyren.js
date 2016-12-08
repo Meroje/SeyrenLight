@@ -38,6 +38,14 @@ angular.module('seyrenLightApp')
 
                         // Return checks filtered
                         return checks;
+                    }, function(reason) {
+                        return [
+                            {
+                                url: '#',
+                                name: 'Disconnected ' + reason.statusText,
+                                state: 'DISCONNECTED'
+                            }
+                        ];
                     });
 
                 // Return the promise to the controller
