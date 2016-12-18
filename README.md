@@ -1,6 +1,6 @@
 # SeyrenLight
 
-A monitoring tool (buildwall) that allows you to quickly display failing checks for Seyren.
+A monitoring tool (buildwall) that allows you to quickly display failing checks for [Seyren](https://github.com/scobal/seyren).
 
 **Disclaimer:** This project is a modified clone of [JenkinsLight](https://github.com/M6Web/JenkinsLight).
 
